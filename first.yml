@@ -1,0 +1,19 @@
+- hosts: all
+  remote_user: ubuntu
+  become: yes
+  tasks:
+       - name: i am going to Install apache
+         apt:
+           name: apache2
+           state: present
+
+       - name: starting my apache
+         service:
+           name: apache2
+           state: started
+
+       - name: copy index.html
+         copy:
+           src: ./index.html
+           dest: /var/www/html/index.html
+           mode: '0777'
